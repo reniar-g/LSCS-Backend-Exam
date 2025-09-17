@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS project_db;
-use project_db;
+CREATE DATABASE IF NOT EXISTS products_db;
+USE products_db;
 
 CREATE TABLE IF NOT EXISTS products (
 

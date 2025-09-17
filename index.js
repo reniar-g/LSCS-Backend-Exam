@@ -8,10 +8,10 @@ app.use(express.json());
 app.use('/products', productsRouter);
 
 // error handling 
-app.use((err, res) => {
-    console.error(err); 
+app.use((err, req, res, next) => {
+    console.error(err);
     // send error response, defaults to 500 if status is not set
-    res.status(err.status || 500).json({ error: err.message || 'Internal Server Error' }); 
+    res.status(err.status || 500).json({ error: err.message || 'Internal Server Error' });
 }); 
 
 const PORT = process.env.PORT || 3000;
