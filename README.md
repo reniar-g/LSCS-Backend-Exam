@@ -1,21 +1,19 @@
 # LSCS Backend Exam – Products API
 
-A simple RESTful Products API built with Node.js, Express, and MySQL. Implements full CRUD operations with input validation, layered architecture (routes → controllers → models → database), and proper HTTP status codes.
-
+A simple RESTful Products API built with Node.js, Express, and MySQL. This project was developed as part of the La Salle Computer Society (LSCS) Research and Development Committee AVP Applications, specifically for the Backend Engineer role.
 
 ## Tech Stack
 - **Backend:** Node.js + Express.js
 - **Database:** MySQL 
-
-**Dependencies:**
-- **Validation:** `express-validator`
-- **Environment config:** `dotenv`
-- **Testing:** Jest + Supertest
+- **Dependencies:**
+	- **Validation:** `express-validator`
+	- **Environment variable loader:** `dotenv`
+	- **Testing:** Jest + Supertest
 
 ## Prerequisites
 Before setting up the project, ensure you have the following installed:
-- **Node.js** (v16 or higher) - [Download here](https://nodejs.org/)
-- **MySQL** (v8.0 or higher) - [Download here](https://dev.mysql.com/downloads/mysql/)
+- [**Node.js** (v16 or higher)](https://nodejs.org/)
+- [**MySQL** (v8.0 or higher)](https://dev.mysql.com/downloads/mysql/)
 - **npm** or **yarn**
 
 ## Setup
@@ -33,7 +31,7 @@ Before setting up the project, ensure you have the following installed:
 	 ```powershell
 	 npm install
 	 ```
-4. Create the database and table:
+4. Initialize the database schema:
 	 ```powershell
 	 mysql -u root -p < schema.sql
 	 ```
@@ -42,10 +40,10 @@ Before setting up the project, ensure you have the following installed:
 	 ```powershell
 	 npm run dev
 	 ```
-	 Server defaults to `http://localhost:3000` ( can be overridden with `PORT` in `.env` file).
+	 Server defaults to `http://localhost:3000` (can be overridden with `PORT` in `.env` file).
 
 ## Endpoints
-
+The API supports full CRUD operations for managing products:
 | Method | Path             | Description                  | 
 |--------|------------------|------------------------------|
 | POST   | /products        | Create new product           | 
