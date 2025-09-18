@@ -1,3 +1,4 @@
+// contains the config for the database connection
 
 const mysql = require('mysql2/promise');
 require('dotenv').config();

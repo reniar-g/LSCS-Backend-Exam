@@ -27,7 +27,7 @@ async function create(product) {
 async function update(id, fields) {
     const allowedFields = ['name', 'price', 'description', 'category', 'quantity'];
     
-    // filter lang yung allowed na fields
+    // filter yung allowed na fields
     const entries = Object.entries(fields).filter(([key]) => allowedFields.includes(key));
 
     // if there is nothing to update, return the product as is
@@ -35,7 +35,7 @@ async function update(id, fields) {
         return getById(id); 
     }
 
-    // dynamically gagawan ng sql query based on the fields provided 
+    // dynamically gagawan ng sql query based on the fields na provided 
     const setClause = entries.map(([key]) => `${key} = ?`).join(', ');
     const values = entries.map(([, value]) => value);
 
@@ -54,6 +54,7 @@ async function remove(id) {
   return result.affectedRows > 0;
 }
 
+// export all functions
 module.exports = {
   getAll,
   getById,
