@@ -32,10 +32,13 @@ Before setting up the project, ensure you have the following installed:
 	 ```powershell
 	 npm install
 	 ```
-4. Initialize the database schema:
-	 ```powershell
-	 mysql -u root -p < schema.sql
-	 ```
+4. Set up the database:
+	Make sure that your MySQL server is running. Execute the SQL script provided in `schema.sql` to create `products_db` and the `products` table.
+	
+	**Using MySQL Workbench:**
+	- Open MySQL Workbench and connect to your server
+	- Open the `schema.sql` file (File → Open SQL Script)
+	- Click the lightning bolt icon to execute the script
 5. Copy `.env.example` to a new file `.env` and fill in with your credentials.
 6. Start the server:
 	 ```powershell
