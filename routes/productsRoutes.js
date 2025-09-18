@@ -13,10 +13,13 @@ const {
 const router = express.Router();
 
 // general middleware to handle validation results
-function handleValidation(req, res, next) { 
-	const errors = validationResult(req); 
-	if (!errors.isEmpty()) { 
-		return res.status(400).json({ errors: errors.array() }); 
+function handleValidation(req, res, next) {
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(400).json({
+			error: 'Validation failed',
+			details: errors.array().map(e => ({ field: e.path, message: e.msg }))
+		});
 	}
 	next();
 }
@@ -39,10 +42,10 @@ router.post(
 	'/',
 	[
 		body('name').isString().trim().notEmpty().withMessage('Name is required'),
-		body('price').isFloat({ gt: 0 }).withMessage('Price must be a number greater than 0'),
-		body('description').optional({ nullable: true }).isString().withMessage('Description must be a string'),
-		body('category').optional({ nullable: true }).isString().withMessage('Category must be a string'),
-		body('quantity').optional().isInt({ min: 0 }).withMessage('Quantity must be an integer greater than or equal to 0'),
+		body('price').isFloat({ gt: 0 }).withMessage('Price must be a number greater than 0').toFloat(),
+		body('description').optional({ nullable: true }).isString().withMessage('Description must be a string').trim(),
+		body('category').optional({ nullable: true }).isString().withMessage('Category must be a string').trim(),
+		body('quantity').optional().isInt({ min: 0 }).withMessage('Quantity must be an integer greater than or equal to 0').toInt(),
 	],
 	handleValidation,
 	createProduct
@@ -53,11 +56,11 @@ router.put(
 	'/:id',
 	[
 		param('id').isInt({ gt: 0 }).withMessage('ID must be a positive integer'),
-		body('name').optional().isString().notEmpty().withMessage('Name must be a non-empty string'),
-		body('price').optional().isFloat({ gt: 0 }).withMessage('Price must be a number > 0'),
-		body('description').optional({ nullable: true }).isString().withMessage('Description must be a string'),
-		body('category').optional({ nullable: true }).isString().withMessage('Category must be a string'),
-		body('quantity').optional().isInt({ min: 0 }).withMessage('Quantity must be an integer >= 0'),
+		body('name').optional().isString().trim().notEmpty().withMessage('Name must be a non-empty string'),
+		body('price').optional().isFloat({ gt: 0 }).withMessage('Price must be a number > 0').toFloat(),
+		body('description').optional({ nullable: true }).isString().withMessage('Description must be a string').trim(),
+		body('category').optional({ nullable: true }).isString().withMessage('Category must be a string').trim(),
+		body('quantity').optional().isInt({ min: 0 }).withMessage('Quantity must be an integer >= 0').toInt(),
 	],
 	handleValidation,
 	updateProduct

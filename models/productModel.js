@@ -5,13 +5,17 @@ const pool = require('../config/database');
 // gets all of the products
 async function getAll() {
     const [rows] = await pool.query('SELECT * FROM products');
-    return rows;
+    
+    // AI-ASSISTED: ensure price is a number when retrieved from the database
+    return rows.map(r => ({ ...r, price: r.price !== null ? Number(r.price) : r.price }));
 }
 
 // gets product by its id
 async function getById(id) {
     const [rows] = await pool.query('SELECT * FROM products WHERE id = ?', [id]);
-    return rows[0] || null;
+    if (!rows[0]) return null;
+    const row = rows[0];
+    return { ...row, price: row.price !== null ? Number(row.price) : row.price };
 }
 
 // creates a new product and returns the created product with its new id
