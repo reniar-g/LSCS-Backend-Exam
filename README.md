@@ -14,6 +14,7 @@ A simple RESTful Products API built with Node.js, Express, and MySQL. This proje
 Before setting up the project, ensure you have the following installed:
 - [**Node.js** (v16 or higher)](https://nodejs.org/)
 - [**MySQL** (v8.0 or higher)](https://dev.mysql.com/downloads/mysql/)
+- [**Git**](https://git-scm.com/downloads)
 - **npm** or **yarn**
 
 ## Setup
