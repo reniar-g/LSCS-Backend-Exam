@@ -1,5 +1,3 @@
-// contains the config for the database connection
-
 const mysql = require('mysql2/promise');
 const pool = mysql.createPool({
   host: process.env.DB_HOST,

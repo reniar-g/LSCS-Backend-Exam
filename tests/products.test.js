@@ -22,7 +22,7 @@ let id1, id2; // this will store the two created products this test will create
     await pool.end();
   });
 
-  // AI-ASSISTED: Expect an empty array when database table has no rows
+  // AI-ASSISTED TEST: Expect an empty array when database table has no rows
   test('GET /products (empty)', async () => {
     const res = await request(app).get('/products');
     expect(res.status).toBe(200);
@@ -55,21 +55,21 @@ let id1, id2; // this will store the two created products this test will create
     id2 = res.body.id;
   });
 
-  // AI-ASSISTED: This will show at least the two created rows
+  // AI-ASSISTED TEST: This will show at least the two created rows
   test('GET /products (after creation)', async () => {
     const res = await request(app).get('/products');
     expect(res.status).toBe(200);
     expect(res.body.length).toBeGreaterThanOrEqual(2);
   });
 
- // AI-GENERATED TEST: Fetch existing product by ID
+ // AI-ASSISTED TEST: Fetch existing product by ID
   test('GET /products/:id (existing)', async () => {
     const res = await request(app).get(`/products/${id1}`);
     expect(res.status).toBe(200);
     expect(res.body.id).toBe(id1);
   });
   
-  // AI-GENERATED TEST: Not found path should return 404
+  // AI-ASSISTED TEST: Not found path should return 404
   test('GET /products/:id (not found)', async () => {
     const res = await request(app).get('/products/999999');
     expect(res.status).toBe(404);
@@ -93,7 +93,7 @@ let id1, id2; // this will store the two created products this test will create
     expect(res.status).toBe(400);
   });
 
-  // AI-GENERATED TEST: Validation error when required 'name' is missing
+  // test for validation error when creating a product without the required name field
   test('POST /products (validation error - missing name)', async () => {
     const res = await request(app)
       .post('/products')

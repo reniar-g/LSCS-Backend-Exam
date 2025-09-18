@@ -12,7 +12,7 @@ const {
 
 const router = express.Router();
 
-// general middleware to handle validation results
+// general middleware function to handle validation results
 function handleValidation(req, res, next) {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
@@ -29,7 +29,6 @@ router.get('/', getAllProducts);
 
 // GET /products/:id (gets a product by its id)
 router.get('/:id',
-    // if value is not int or <= 0, magrereturn ng error code 400
     [param('id').isInt({ gt: 0 }).withMessage('ID must be a positive integer')], 
     handleValidation,
     getProductById

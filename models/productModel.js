@@ -39,10 +39,9 @@ async function update(id, fields) {
         return getById(id); 
     }
 
-    // dynamically gagawan ng sql query based on the fields na provided 
+    // AI-ASSISTED: create the SET clause dynamically based on the fields to update
     const setClause = entries.map(([key]) => `${key} = ?`).join(', ');
     const values = entries.map(([, value]) => value);
-
     const [result] = await pool.query(`UPDATE products SET ${setClause} WHERE id = ?`, [...values, id]);
 
     if (result.affectedRows === 0) {
@@ -58,7 +57,6 @@ async function remove(id) {
   return result.affectedRows > 0;
 }
 
-// export all functions
 module.exports = {
   getAll,
   getById,
